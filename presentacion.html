@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Presentación de respuesta al briefing del cliente — Proyecto web rubi.shops.">
+    <meta name="theme-color" content="#FFFFFF">
+    <title>Presentación del Proyecto — rubi.shops</title>
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Preload imagen portada -->
+    <link rel="preload" as="image" type="image/webp" imagesrcset="fotos/10_verde_xs_480.webp 480w, fotos/10_verde_xs.webp 1080w" imagesizes="(max-width: 900px) 80vw, 420px" fetchpriority="high">
+
+    <!-- Google Fonts: misma tipografía recta y limpia de la página -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Jost:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Jost:wght@400;500;600&display=swap"></noscript>
+
+    <style>
+        /* ═══════════════════════════════════════════════════
+           PRESENTACIÓN RUBI.SHOPS — Respuesta al Briefing
+           Mismo sistema visual exacto que la página web
+           ═══════════════════════════════════════════════════ */
+        :root {
+            --color-bg: #FFFFFF;
+            --color-surface: #F7F7F7;
+            --color-ink: #111111;
+            --color-text: #222222;
+            --color-muted: #595959;
+            --color-border: #E6E6E6;
+            --color-border-dark: #CCCCCC;
+            --color-ruby: #C8102E;
+            --color-ruby-dark: #9E0B23;
+            --color-whatsapp: #127A40;
+
+            --font-display: 'Jost', system-ui, -apple-system, sans-serif;
+            --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+            --ease: cubic-bezier(0.25, 1, 0.5, 1);
+            --duration: 240ms;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+            color: inherit;
+        }
+
+        :where(a:any-link, button, [tabindex]):focus-visible {
+            outline: 2px solid var(--color-ruby);
+            outline-offset: 2px;
+        }
+
+        .visually-hidden:where(:not(:focus-within, :active)) {
+            position: absolute !important;
+            clip-path: inset(50%) !important;
+            overflow: hidden !important;
+            width: 1px !important;
+            height: 1px !important;
+            margin: -1px !important;
+            padding: 0 !important;
+            border: 0 !important;
+            white-space: nowrap !important;
+        }
+
+        /* ── Shell ── */
+        .deck-shell {
+            display: grid;
+            grid-template-rows: 56px 1fr 56px;
+            height: 100dvh;
+            width: 100vw;
+            background-color: var(--color-bg);
+        }
+
+        .deck-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            border-bottom: 1px solid var(--color-border);
+            background-color: #FFFFFF;
+            z-index: 20;
+        }
+
+        .deck-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .deck-brand img {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            object-fit: cover;
+        }
+
+        .deck-brand-text {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--color-ink);
+        }
+
+        .deck-brand-dot {
+            color: var(--color-ruby);
+        }
+
+        .deck-section-label {
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-muted);
+        }
+
+        .deck-top-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .deck-top-link {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border: 1px solid var(--color-border-dark);
+            border-radius: 5px;
+            color: var(--color-ink);
+            transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+        }
+
+        .deck-top-link:hover {
+            background-color: var(--color-ruby);
+            border-color: var(--color-ruby);
+            color: #FFFFFF;
+        }
+
+        /* ── Escenario ── */
+        .deck-stage {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            overflow-y: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 28px 48px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateX(24px);
+            transition: opacity 0.28s var(--ease), transform 0.28s var(--ease), visibility 0.28s var(--ease);
+            background-color: var(--color-bg);
+        }
+
+        .slide.slide-surface {
+            background-color: var(--color-surface);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateX(0);
+            z-index: 2;
+        }
+
+        .slide.prev {
+            transform: translateX(-24px);
+        }
+
+        .slide-inner {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* ── Tipografía ── */
+        .eyebrow {
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-ruby);
+            margin-bottom: 8px;
+        }
+
+        .slide-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 3vw, 2.65rem);
+            font-weight: 500;
+            line-height: 1.12;
+            letter-spacing: -0.01em;
+            color: var(--color-ink);
+            margin-bottom: 10px;
+        }
+
+        .slide-lead {
+            font-size: clamp(0.92rem, 1.18vw, 1.04rem);
+            line-height: 1.6;
+            color: var(--color-muted);
+            max-width: 64ch;
+        }
+
+        .slide-header {
+            margin-bottom: 24px;
+        }
+
+        /* ── Bloque recurrente: "Lo que pidió el cliente" vs "Cómo lo aplicamos" ── */
+        .brief-pair {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .brief-box,
+        .applied-box {
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .brief-box {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+        }
+
+        .slide-surface .brief-box {
+            background-color: #FFFFFF;
+        }
+
+        .applied-box {
+            background-color: #FFFFFF;
+            border: 1px solid var(--color-border-dark);
+            border-top: 3px solid var(--color-ruby);
+        }
+
+        .box-tag {
+            display: inline-block;
+            align-self: flex-start;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 4px 9px;
+            border-radius: 4px;
+        }
+
+        .box-tag-client {
+            background-color: var(--color-ink);
+            color: #FFFFFF;
+        }
+
+        .box-tag-solution {
+            background-color: var(--color-ruby);
+            color: #FFFFFF;
+        }
+
+        .quote-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quote-list li {
+            border-left: 2px solid var(--color-border-dark);
+            padding-left: 14px;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            color: var(--color-text);
+        }
+
+        .quote-q {
+            display: block;
+            font-size: 0.74rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--color-muted);
+            margin-bottom: 2px;
+        }
+
+        .solution-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .solution-list li {
+            position: relative;
+            padding-left: 22px;
+            font-size: 0.92rem;
+            line-height: 1.52;
+            color: var(--color-text);
+        }
+
+        .solution-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: 700;
+            color: var(--color-ruby);
+        }
+
+        /* ── Botones ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-display);
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            min-height: 44px;
+            padding: 0 22px;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+        }
+
+        .btn-ruby {
+            background-color: var(--color-ruby);
+            border-color: var(--color-ruby);
+            color: #FFFFFF;
+        }
+
+        .btn-ruby:hover {
+            background-color: var(--color-ruby-dark);
+            border-color: var(--color-ruby-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--color-ink);
+            color: var(--color-ink);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-ink);
+            border-color: var(--color-ink);
+            color: #FFFFFF;
+        }
+
+        /* ── Slide 1: Portada ── */
+        .cover-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: 48px;
+            align-items: center;
+        }
+
+        .cover-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.3rem, 4.2vw, 3.5rem);
+            font-weight: 500;
+            line-height: 1.08;
+            letter-spacing: -0.015em;
+            color: var(--color-ink);
+            margin-bottom: 16px;
+        }
+
+        .cover-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 26px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .cover-stat-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-muted);
+            margin-bottom: 2px;
+        }
+
+        .cover-stat-val {
+            font-family: var(--font-display);
+            font-size: 1.02rem;
+            font-weight: 500;
+            color: var(--color-ink);
+        }
+
+        .cover-photo {
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            aspect-ratio: 4 / 5;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #EAEAEA;
+        }
+
+        .cover-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 12%;
+        }
+
+        /* ── Slide 3: Identidad visual ── */
+        .swatches-row {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .swatch {
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #FFFFFF;
+        }
+
+        .swatch-color {
+            height: 52px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .swatch-info {
+            padding: 8px 10px;
+        }
+
+        .swatch-name {
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--color-ink);
+        }
+
+        .swatch-hex {
+            font-size: 0.7rem;
+            color: var(--color-muted);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .type-mini-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .type-mini {
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            background-color: var(--color-surface);
+        }
+
+        .type-mini strong {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--color-ink);
+        }
+
+        .type-mini span {
+            font-size: 0.78rem;
+            color: var(--color-muted);
+        }
+
+        /* ── Slide 4: Ofertas en portada ── */
+        .mini-offers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        .mini-offer-card {
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #FFFFFF;
+        }
+
+        .mini-offer-img {
+            position: relative;
+            aspect-ratio: 3 / 4;
+            max-height: 220px;
+            overflow: hidden;
+            background-color: var(--color-surface);
+        }
+
+        .mini-offer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 12%;
+        }
+
+        .mini-offer-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-color: var(--color-ruby);
+            color: #FFFFFF;
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 3px 7px;
+        }
+
+        .mini-offer-body {
+            padding: 10px 12px;
+        }
+
+        .mini-offer-name {
+            font-size: 0.8rem;
+            color: var(--color-ink);
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .mini-offer-price {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-ruby);
+        }
+
+        .mini-offer-price s {
+            color: var(--color-muted);
+            font-weight: 400;
+            font-size: 0.75rem;
+            margin-left: 5px;
+        }
+
+        /* ── Slide 5: Categorías fijas y tallas ── */
+        .cats-pill-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .cat-chip {
+            border: 1px solid var(--color-border-dark);
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background-color: var(--color-surface);
+            color: var(--color-ink);
+        }
+
+        .cat-chip.accent {
+            background-color: var(--color-ruby);
+            border-color: var(--color-ruby);
+            color: #FFFFFF;
+        }
+
+        .size-row-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .size-box {
+            min-width: 40px;
+            height: 32px;
+            border: 1px solid var(--color-border-dark);
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            background-color: #FFFFFF;
+        }
+
+        .size-box.active {
+            background-color: var(--color-ruby);
+            border-color: var(--color-ruby);
+            color: #FFFFFF;
+        }
+
+        /* ── Slide 6: E-commerce + Redes ── */
+        .mock-modal {
+            border: 1px solid var(--color-border-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #FFFFFF;
+            display: grid;
+            grid-template-columns: 0.88fr 1.12fr;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .mock-modal-img {
+            background-color: var(--color-surface);
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+        }
+
+        .mock-modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 12%;
+        }
+
+        .mock-modal-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .mock-badge {
+            align-self: flex-start;
+            font-size: 0.64rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 3px 7px;
+            background-color: var(--color-ruby);
+            color: #FFFFFF;
+        }
+
+        .mock-title {
+            font-family: var(--font-display);
+            font-size: 1.08rem;
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--color-ink);
+        }
+
+        .mock-price {
+            font-size: 0.96rem;
+            font-weight: 600;
+            color: var(--color-ruby);
+        }
+
+        .mock-price s {
+            color: var(--color-muted);
+            font-weight: 400;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+
+        .mock-btn-ruby {
+            background-color: var(--color-ruby);
+            color: #FFFFFF;
+            text-align: center;
+            padding: 9px 10px;
+            border-radius: 5px;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .mock-btn-wa {
+            background-color: var(--color-whatsapp);
+            color: #FFFFFF;
+            text-align: center;
+            padding: 9px 10px;
+            border-radius: 5px;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .social-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .social-pill {
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border: 1px solid var(--color-border-dark);
+            border-radius: 999px;
+            background-color: var(--color-surface);
+            color: var(--color-ink);
+        }
+
+        /* ── Slide 7: Políticas y Móvil ── */
+        .mobile-pair {
+            display: grid;
+            grid-template-columns: 270px 1fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .phone-frame {
+            border: 2px solid var(--color-ink);
+            border-radius: 24px;
+            padding: 9px;
+            background-color: #FFFFFF;
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .phone-screen {
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: #FFFFFF;
+        }
+
+        .phone-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 11px;
+            border-bottom: 1px solid var(--color-border);
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+        }
+
+        .phone-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 10px;
+        }
+
+        .phone-card img {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            object-position: center 12%;
+            border-radius: 4px;
+        }
+
+        .phone-card-title {
+            font-size: 0.66rem;
+            color: var(--color-ink);
+            margin-top: 4px;
+            line-height: 1.25;
+        }
+
+        .phone-card-price {
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--color-ruby);
+            margin-top: 2px;
+        }
+
+        /* ── Slide 8: Lighthouse ── */
+        .lh-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .lh-card {
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 20px 18px;
+            background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .lh-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            border: 2px solid var(--color-whatsapp);
+            color: var(--color-whatsapp);
+            font-family: var(--font-display);
+            font-size: 0.86rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lh-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.08rem;
+            font-weight: 500;
+            color: var(--color-ink);
+        }
+
+        .lh-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .lh-card li {
+            font-size: 0.83rem;
+            color: var(--color-muted);
+            line-height: 1.45;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .lh-card li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            color: var(--color-ruby);
+        }
+
+        /* ── Slide 9: Cierre & Demo ── */
+        .closing-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 44px;
+            align-items: center;
+        }
+
+        .next-steps-box {
+            margin-top: 20px;
+            padding: 16px 20px;
+            border: 1px solid var(--color-border);
+            border-left: 3px solid var(--color-ruby);
+            border-radius: 6px;
+            background-color: #FFFFFF;
+        }
+
+        .next-steps-title {
+            font-family: var(--font-display);
+            font-size: 0.74rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-ruby);
+            margin-bottom: 8px;
+        }
+
+        .next-steps-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.86rem;
+            color: var(--color-text);
+        }
+
+        .closing-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .closing-mosaic {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .closing-mosaic img {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            object-position: center 12%;
+            border-radius: 6px;
+        }
+
+        /* ── Barra inferior ── */
+        .deck-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 32px;
+            border-top: 1px solid var(--color-border);
+            background-color: #FFFFFF;
+            position: relative;
+            z-index: 20;
+        }
+
+        .deck-progress {
+            position: absolute;
+            top: -1px;
+            left: 0;
+            height: 2px;
+            background-color: var(--color-ruby);
+            transition: width 0.25s var(--ease);
+        }
+
+        .controls-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ctrl-btn {
+            height: 36px;
+            min-width: 36px;
+            padding: 0 12px;
+            border: 1px solid var(--color-border-dark);
+            border-radius: 5px;
+            background-color: #FFFFFF;
+            color: var(--color-ink);
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+        }
+
+        .ctrl-btn:hover:not(:disabled) {
+            background-color: var(--color-ruby);
+            border-color: var(--color-ruby);
+            color: #FFFFFF;
+        }
+
+        .ctrl-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            min-width: 58px;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ── Modal Índice (<dialog>) ── */
+        dialog.overview-dialog {
+            margin: auto;
+            padding: 0;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            color: var(--color-text);
+            max-width: 760px;
+            width: 92vw;
+            max-height: 84dvh;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+        }
+
+        dialog.overview-dialog::backdrop {
+            background-color: rgba(0, 0, 0, 0.55);
+            overflow: hidden;
+            overscroll-behavior: contain;
+        }
+
+        dialog.overview-dialog:modal {
+            overscroll-behavior: contain;
+        }
+
+        .overview-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 22px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .overview-head h2 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--color-ink);
+        }
+
+        .overview-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 18px 22px;
+            overflow-y: auto;
+            max-height: 68dvh;
+        }
+
+        .overview-item {
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            padding: 14px;
+            text-align: left;
+            background-color: #FFFFFF;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
+        }
+
+        .overview-item:hover {
+            border-color: var(--color-ink);
+            background-color: var(--color-surface);
+        }
+
+        .overview-item.current {
+            border-color: var(--color-ruby);
+            background-color: var(--color-surface);
+        }
+
+        .overview-num {
+            font-family: var(--font-display);
+            font-size: 0.74rem;
+            font-weight: 600;
+            color: var(--color-ruby);
+        }
+
+        .overview-name {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-ink);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 960px) {
+            .slide {
+                padding: 22px 18px;
+                align-items: flex-start;
+            }
+
+            .deck-topbar,
+            .deck-controls {
+                padding: 0 16px;
+            }
+
+            .deck-section-label {
+                display: none;
+            }
+
+            .cover-grid,
+            .brief-pair,
+            .mobile-pair,
+            .closing-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .cover-photo {
+                margin-left: 0;
+                max-width: 280px;
+            }
+
+            .swatches-row,
+            .lh-grid,
+            .overview-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .phone-frame {
+                max-width: 260px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .type-mini-grid,
+            .mock-modal {
+                grid-template-columns: 1fr;
+            }
+
+            .ctrl-text {
+                display: none;
+            }
+        }
+
+        /* ── Impresión / Exportar a PDF ── */
+        @media print {
+            @page {
+                size: landscape;
+                margin: 0;
+            }
+
+            html, body {
+                height: auto;
+                overflow: visible;
+                background: #FFFFFF;
+            }
+
+            .deck-shell {
+                display: block;
+                height: auto;
+                width: 100%;
+            }
+
+            .deck-topbar,
+            .deck-controls,
+            dialog {
+                display: none !important;
+            }
+
+            .deck-stage {
+                position: static;
+                overflow: visible;
+                height: auto;
+            }
+
+            .slide {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                pointer-events: auto !important;
+                page-break-after: always;
+                break-after: page;
+                min-height: 100vh;
+                padding: 34px 44px;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .slide:last-child {
+                page-break-after: auto;
+                break-after: auto;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="deck-shell">
+        <!-- Barra superior -->
+        <header class="deck-topbar">
+            <a href="index.html" class="deck-brand" title="Volver al sitio web">
+                <picture>
+                    <source srcset="logo.webp" type="image/webp">
+                    <img src="logo.png" alt="rubi.shops" width="28" height="28">
+                </picture>
+                <span class="deck-brand-text">RUBÍ<span class="deck-brand-dot">.</span>SHOPS</span>
+            </a>
+
+            <span id="current-section" class="deck-section-label">01 · Propuesta Web</span>
+
+            <div class="deck-top-actions">
+                <a href="index.html" target="_blank" rel="noopener noreferrer" class="deck-top-link">Ver sitio</a>
+                <a href="catalogo.html" target="_blank" rel="noopener noreferrer" class="deck-top-link">Catálogo</a>
+            </div>
+        </header>
+
+        <!-- Escenario -->
+        <main class="deck-stage" id="deck-stage" aria-label="Presentación de respuesta al briefing rubi.shops">
+            <div id="slide-announcer" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+            <!-- ═══ SLIDE 1: PORTADA ═══ -->
+            <section class="slide slide-surface active" data-title="Propuesta Web">
+                <div class="slide-inner cover-grid">
+                    <div>
+                        <p class="eyebrow">Boutique Femenina</p>
+                        <h1 class="cover-title">Así convertimos un briefing en la tienda web de rubi.shops</h1>
+                        <p class="slide-lead">Cada decisión de diseño, redacción y funcionalidad fue construida directamente a partir de las respuestas del formulario inicial del cliente.</p>
+
+                        <div class="cover-meta-row">
+                            <div>
+                                <span class="cover-stat-label">Cliente</span>
+                                <span class="cover-stat-val">rubi.shops — Radiante como tú</span>
+                            </div>
+                            <div>
+                                <span class="cover-stat-label">Ubicación</span>
+                                <span class="cover-stat-val">C.C. Gran Bazar, Maracaibo</span>
+                            </div>
+                            <div>
+                                <span class="cover-stat-label">Enfoque</span>
+                                <span class="cover-stat-val">Briefing → Solución aplicada</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cover-photo">
+                        <picture>
+                            <source srcset="fotos/10_verde_xs_480.webp 480w, fotos/10_verde_xs.webp 1080w" sizes="(max-width: 900px) 80vw, 420px" type="image/webp">
+                            <img src="fotos/10_verde_xs.jpg" alt="Vestido Largo Esmeralda de rubi.shops" width="1080" height="1431" fetchpriority="high" decoding="async">
+                        </picture>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SLIDE 2: OBJETIVO Y PÚBLICO ═══ -->
+            <section class="slide" data-title="Objetivo y público">
+                <div class="slide-inner">
+                    <div class="slide-header">
+                        <p class="eyebrow">01 · Empresa, servicios y público</p>
+                        <h2 class="slide-title">Una boutique inclusiva que muestra sus servicios con claridad</h2>
+                    </div>
+
+                    <div class="brief-pair">
+                        <div class="brief-box">
+                            <span class="box-tag box-tag-client">Lo que nos pidió el cliente</span>
+                            <ul class="quote-list">
+                                <li>
+                                    <span class="quote-q">Giro de la empresa</span>
+                                    “Venta de vestidos y ropa de dama: vestidos, enterizos y blusas desde la talla juvenil hasta la talla plus.”
+                                </li>
+                                <li>
+                                    <span class="quote-q">Público objetivo</span>
+                                    “Satisfacer las necesidades de nuestras clientas desde la más pequeña hasta la más grande para eventos de ocasiones especiales.”
+                                </li>
+                                <li>
+                                    <span class="quote-q">Objetivo principal</span>
+                                    “Dar a conocer la empresa y sus servicios.”
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="applied-box">
+                            <span class="box-tag box-tag-solution">Cómo lo aplicamos en la web</span>
+                            <ul class="solution-list">
+                                <li><strong>Inclusividad visible desde el primer pantallazo:</strong> barra directa <strong>“Seleccione su talla”</strong> desde <code>XS</code> juvenil hasta <code>XXXL</code> talla plus que filtra el catálogo en un clic.</li>
+                                <li><strong>Sección dedicada a Boutique y Servicios:</strong> explica la asesoría personalizada de imagen y medidas, prueba en el Local 995 del C.C. Gran Bazar, horarios, pagos (Pago Móvil BCV, Zelle, USD) y envíos nacionales.</li>
+                                <li><strong>Propuesta de valor fiel:</strong> toda la comunicación destaca vestidos, enterizos y ropa de dama para bodas, graduaciones, cumpleaños y galas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SLIDE 3: IDENTIDAD VISUAL, TIPOGRAFÍA Y TONO ═══ -->
+            <section class="slide slide-surface" data-title="Identidad visual y tono">
+                <div class="slide-inner">
+                    <div class="slide-header">
+                        <p class="eyebrow">02 · Diseño, tipografía y voz de marca</p>
+                        <h2 class="slide-title">Elegante, vibrante, limpia y con tono de asesora</h2>
+                    </div>
+
+                    <div class="brief-pair">
+                        <div class="brief-box">
+                            <span class="box-tag box-tag-client">Lo que nos pidió el cliente</span>
+                            <ul class="quote-list">
+                                <li>
+                                    <span class="quote-q">Imagen visual y colores</span>
+                                    <strong>“Elegante”</strong>, con <strong>“colores vibrantes”</strong> y respetando su línea gráfica (manual de marca y logo).
+                                </li>
+                                <li>
+                                    <span class="quote-q">Tipografía</span>
+                                    <strong>“Moderna, minimalista y limpia (letras rectas y sencillas).”</strong>
+                                </li>
+                                <li>
+                                    <span class="quote-q">Tono de comunicación</span>
+                                    <strong>“Como una asesora de moda experta y elegante (‘Descubra nuestra nueva colección’).”</strong>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="applied-box">
+                            <span class="box-tag box-tag-solution">Cómo lo aplicamos en la web</span>
+                            <div class="swatches-row">
+                                <div class="swatch">
+                                    <div class="swatch-color" style="background-color: #FFFFFF;"></div>
+                                    <div class="swatch-info">
+                                        <div class="swatch-name">Blanco</div>
+                                        <div class="swatch-hex">#FFFFFF</div>
+                                    </div>
+                                </div>
+                                <div class="swatch">
+                                    <div class="swatch-color" style="background-color: #F7F7F7;"></div>
+                                    <div class="swatch-info">
+                                        <div class="swatch-name">Gris suave</div>
+                                        <div class="swatch-hex">#F7F7F7</div>
+                                    </div>
+                                </div>
+                                <div class="swatch">
+                                    <div class="swatch-color" style="background-color: #111111;"></div>
+                                    <div class="swatch-info">
+                                        <div class="swatch-name">Negro</div>
+                                        <div class="swatch-hex">#111111</div>
+                                    </div>
+                                </div>
+                                <div class="swatch">
+                                    <div class="swatch-color" style="background-color: #C8102E;"></div>
+                                    <div class="swatch-info">
+                                        <div class="swatch-name">Rubí</div>
+                                        <div class="swatch-hex">#C8102E</div>
+                                    </div>
+                                </div>
+                                <div class="swatch">
+                                    <div class="swatch-color" style="background-color: #9E0B23;"></div>
+                                    <div class="swatch-info">
+                                        <div class="swatch-name">Rubí profundo</div>
+                                        <div class="swatch-hex">#9E0B23</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="type-mini-grid">
+                                <div class="type-mini">
+                                    <strong>Jost · RUBÍ.SHOPS</strong>
+                                    <span>Letras rectas y elegantes para marca y titulares</span>
+                                </div>
+                                <div class="type-mini">
+                                    <strong style="font-family: var(--font-body);">Inter · $180 · XS–XXXL</strong>
+                                    <span>Lectura limpia en filtros, textos y precios</span>
+                                </div>
+                            </div>
+
+                            <ul class="solution-list">
+                                <li><strong>Trato de usted en todo el sitio:</strong> <em>“Descubra nuestra colección”</em>, <em>“Seleccione su talla”</em> y <em>“Visítenos en Maracaibo”</em>.</li>
+                                <li><strong>Rubí vibrante (#C8102E)</strong> sobre blanco puro (sin tonos pastel), reflejando el corazón del logo.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SLIDE 4: PORTADA Y OFERTAS ACTUALES ═══ -->
+            <section class="slide" data-title="Portada y ofertas">
+                <div class="slide-inner">
+                    <div class="slide-header">
+                        <p class="eyebrow">03 · Prioridad visual en el inicio</p>
+                        <h2 class="slide-title">Colección al entrar y ofertas como protagonistas</h2>
+                    </div>
+
+                    <div class="brief-pair">
+                        <div class="brief-box">
+                            <span class="box-tag box-tag-client">Lo que nos pidió el cliente</span>
+                            <ul class="quote-list">
+                                <li>
+                                    <span class="quote-q">Lo primero que deben ver al entrar</span>
+                                    <strong>“Una imagen grande de la colección más reciente.”</strong>
+                                </li>
+                                <li>
+                                    <span class="quote-q">Lo más importante a destacar en el inicio</span>
+                                    <strong>“Las ofertas y descuentos actuales.”</strong>
+                                </li>
+                            </ul>
+                            <ul class="solution-list" style="margin-top: 6px;">
+                                <li>El Hero abre con una fotografía vertical grande de la nueva colección y acceso directo a <strong>Explorar catálogo</strong> y <strong>Ver ofertas actuales</strong>.</li>
+                                <li>Inmediatamente debajo de la barra de tallas ubicamos la sección dedicada <strong>Ofertas actuales</strong> con etiquetas de descuento (<code>-17%</code> a <code>-19%</code>) y precio anterior tachado.</li>
+                            </ul>
+                        </div>
+
+                        <div class="applied-box">
+                            <span class="box-tag box-tag-solution">Así se destacan las ofertas en el sitio web</span>
+                            <div class="mini-offers-grid">
+                                <div class="mini-offer-card">
+                                    <div class="mini-offer-img">
+                                        <picture>
+                                            <source srcset="fotos/07_negro_brillos_480.webp" type="image/webp">
+                                            <img src="fotos/07_negro_brillos.jpg" alt="Vestido Cut-Out Negro de Lentejuelas" width="480" height="626" loading="lazy">
+                                        </picture>
+                                        <span class="mini-offer-badge">-18%</span>
+                                    </div>
+                                    <div class="mini-offer-body">
+                                        <div class="mini-offer-name">Vestido Cut-Out Negro de Lentejuelas</div>
+                                        <div class="mini-offer-price">$155 <s>$190</s></div>
+                                    </div>
+                                </div>
+
+                                <div class="mini-offer-card">
+                                    <div class="mini-offer-img">
+                                        <picture>
+                                            <source srcset="fotos/11_azul_volantes_480.webp" type="image/webp">
+                                            <img src="fotos/11_azul_volantes.jpg" alt="Vestido Azul Royal con Volante Cascada" width="480" height="636" loading="lazy">
+                                        </picture>
+                                        <span class="mini-offer-badge">-19%</span>
+                                    </div>
+                                    <div class="mini-offer-body">
+                                        <div class="mini-offer-name">Vestido Azul Royal con Volante Cascada</div>
+                                        <div class="mini-offer-price">$130 <s>$160</s></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SLIDE 5: CATEGORIZACIÓN, OCASIONES Y TALLAS ═══ -->
+            <section class="slide slide-surface" data-title="Categorías y filtros">
+                <div class="slide-inner">
+                    <div class="slide-header">
+                        <p class="eyebrow">04 · Organización del catálogo</p>
+                        <h2 class="slide-title">Categoría fija por prenda, filtros por ocasión y tallas</h2>
+                    </div>
+
+                    <div class="brief-pair">
+                        <div class="brief-box">
+                            <span class="box-tag box-tag-client">Lo que nos pidió el cliente</span>
+                            <ul class="quote-list">
+                                <li>
+                                    <span class="quote-q">Variables de los productos</span>
+                                    <strong>“Sí, diferentes Tallas”</strong> (único atributo variable marcado).
+                                </li>
+                                <li>
+                                    <span class="quote-q">¿Múltiples categorías por prenda?</span>
+                                    <strong>“No, cada prenda pertenece a una sola categoría fija.”</strong>
+                                </li>
+                                <li>
+                                    <span class="quote-q">Etiquetas clave para filtrar</span>
+                                    <strong>“Varía mucho en la ocasión o el evento que vayan a tener.”</strong>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="applied-box">
+                            <span class="box-tag box-tag-solution">Cómo lo aplicamos en el catálogo</span>
+                            <ul class="solution-list">
+                                <li><strong>Una sola categoría fija en cada producto:</strong> cada uno de los 14 modelos pertenece exclusivamente a una ocasión principal, evitando duplicación en los filtros.</li>
+                                <li><strong>Estados independientes:</strong> <em>Todas</em>, <em>En oferta</em> y <em>Novedades</em> funcionan aparte de la categoría fija.</li>
+                                <li><strong>Buscador en tiempo real:</strong> busca por ocasión, color o detalle ignorando acentos y sincroniza los filtros en la URL.</li>
+                            </ul>
+
+                            <div>
+                                <span class="cover-stat-label" style="margin-bottom: 6px;">5 Categorías fijas</span>
+                                <div class="cats-pill-grid">
+                                    <span class="cat-chip accent">Fiesta y noche</span>
+                                    <span class="cat-chip">Bodas</span>
+                                    <span class="cat-chip">Graduación</span>
+                                    <span class="cat-chip">Cumpleaños</span>
+                                    <span class="cat-chip">Gala</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="cover-stat-label" style="margin-bottom: 6px;">Filtro de tallas (juvenil a plus)</span>
+                                <div class="size-row-preview">
+                                    <span class="size-box">XS</span>
+                                    <span class="size-box">S</span>
+                                    <span class="size-box active">M</span>
+                                    <span class="size-box">L</span>
+                                    <span class="size-box">XL</span>
+                                    <span class="size-box">XXL</span>
+                                    <span class="size-box">XXXL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SLIDE 6: E-COMMERCE Y REDES SOCIALES ═══ -->
+            <section class="slide" data-title="Tienda en línea y redes">
+                <div class="slide-inner">
+                    <div class="slide-header">
+                        <p class="eyebrow">05 · Conversión y canales digitales</p>
+                        <h2 class="slide-title">Experiencia E-commerce conectada a sus 3 redes</h2>
+                    </div>
+
+                    <div class="brief-pair">
+                        <div class="brief-box">
+                            <span class="box-tag box-tag-client">Lo que nos pidió el cliente</span>
+                            <ul class="quote-list">
+                                <li>
+                                    <span class="quote-q">Tipo de sitio web</span>
+                                    <strong>“Tienda en Línea (E-commerce).”</strong>
+                                </li>
+                                <li>
+                                    <span class="quote-q">Redes sociales a vincular</span>
+                                    <strong>WhatsApp, Instagram y TikTok.</strong>
+                                </li>
+                            </ul>
+
+                            <ul class="solution-list" style="margin-top: 6px;">
+                                <li><strong>Bolsa de pedido integrada:</strong> permite agregar varias prendas con su talla, calcula el total estimado en USD y envía el pedido completo por WhatsApp.</li>
+                                <li><strong>Las 3 redes visibles en todo momento:</strong> íconos de Instagram, TikTok y WhatsApp en el header y enlaces en el footer, además del botón flotante de WhatsApp.</li>
+                            </ul>
+
+                            <div class="social-strip">
+                                <span class="social-pill">Instagram @rubi.shops</span>
+                                <span class="social-pill">TikTok @rubi.shops</span>
+                                <span class="social-pill">WhatsApp +58 424 6295209</span>
+                            </div>
+                        </div>
+
+                        <div class="applied-box">
+                            <span class="box-tag box-tag-solution">Ficha de producto con pedido y WhatsApp</span>
+                            <div class="mock-modal" aria-label="Vista previa de la ficha del vestido">
+                                <div class="mock-modal-img">
+                                    <picture>
+                                        <source srcset="fotos/06_azul_brillos_480.webp" type="image/webp">
+                                        <img src="fotos/06_azul_brillos.jpg" alt="Vestido Sirena Azul Noche" width="480" height="626" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="mock-modal-body">
+                                    <span class="mock-badge">Gala · Nueva colección</span>
+                                    <div class="mock-title">Vestido Sirena Azul Noche con Lentejuelas</div>
+                                    <div class="mock-price">$220</div>
+                                    <div class="size-row-preview">
+                                        <span class="size-box">S</span>
+                                        <span class="size-box active">M</span>
+                                        <span class="size-box">L</span>
+                                        <span class="size-box">XL</span>
+                                    </div>
+                                    <div class="mock-btn-ruby">Agregar a mi pedido</div>
+                                    <div class="mock-btn-wa">Consultar talla M por WhatsApp</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SLIDE 7: POLÍTICAS, ENVÍOS Y MÓVIL ═══ -->
+            <section class="slide slide-surface" data-title="Políticas y experiencia móvil">
+                <div class="slide-inner">
+                    <div class="slide-header">
+                        <p class="eyebrow">06 · Confianza operativa y móvil</p>
+                        <h2 class="slide-title">Políticas claras y navegación cómoda desde el teléfono</h2>
+                    </div>
+
+                    <div class="mobile-pair">
+                        <div class="phone-frame" aria-label="Vista previa móvil">
+                            <div class="phone-screen">
+                                <div class="phone-header">
+                                    <span>RUBÍ<span style="color: var(--color-ruby);">.</span>SHOPS</span>
+                                    <span>☰</span>
+                                </div>
+                                <div class="phone-grid">
+                                    <div class="phone-card">
+                                        <picture>
+                                            <source srcset="fotos/01_rosa_larga_480.webp" type="image/webp">
+                                            <img src="fotos/01_rosa_larga.jpg" alt="Vestido Sirena Magenta" width="480" height="626" loading="lazy">
+                                        </picture>
+                                        <div class="phone-card-title">Sirena Magenta Corset</div>
+                                        <div class="phone-card-price">$180</div>
+                                    </div>
+                                    <div class="phone-card">
+                                        <picture>
+                                            <source srcset="fotos/05_rosa_corto_480.webp" type="image/webp">
+                                            <img src="fotos/05_rosa_corto.jpg" alt="Vestido Coquette Rosa" width="480" height="639" loading="lazy">
+                                        </picture>
+                                        <div class="phone-card-title">Coquette Rosa · -19%</div>
+                                        <div class="phone-card-price">$110</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="brief-pair" style="grid-template-columns: 1fr; gap: 16px;">
+                            <div class="brief-box">
+                                <span class="box-tag box-tag-client">Lo que nos pidió el cliente</span>
+                                <ul class="quote-list">
+                                    <li>
+                                        <span class="quote-q">Textos legales y operativos</span>
+                                        Incluir <strong>Políticas de Cambios y Devoluciones</strong> claras junto a la información operativa de tienda y envíos.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="applied-box">
+                                <span class="box-tag box-tag-solution">Cómo lo aplicamos</span>
+                                <ul class="solution-list">
+                                    <li><strong>Modales accesibles:</strong> ventanas limpias en el footer para <em>Políticas de cambios y devoluciones (plazo de 48h)</em> y <em>Envíos nacionales (MRW, Zoom, Tealca, Domesa y delivery local)</em>.</li>
+                                    <li><strong>Diseño móvil de tienda real:</strong> grilla de 2 columnas en teléfono, filtros desplazables horizontalmente y menú lateral con cierre por Escape o clic fuera.</li>
+                                    <li><strong>Fotos ligeras para datos móviles:</strong> los celulares descargan imágenes WebP de 480px (13–40 KB).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SLIDE 8: VALOR AGREGADO LIGHTHOUSE ═══ -->
+            <section class="slide" data-title="Optimización Lighthouse">
+                <div class="slide-inner">
+                    <div class="slide-header">
+                        <p class="eyebrow">07 · Calidad técnica (Valor agregado)</p>
+                        <h2 class="slide-title">Optimización integral para Google Lighthouse</h2>
+                        <p class="slide-lead">Además de cumplir el briefing visual y comercial, optimizamos el sitio en las 4 métricas de Lighthouse usando estándares web nativos.</p>
+                    </div>
+
+                    <div class="lh-grid">
+                        <div class="lh-card">
+                            <div class="lh-badge">LCP</div>
+                            <h3>Rendimiento</h3>
+                            <ul>
+                                <li>WebP responsivo (<code>480w</code> y <code>1080w</code>) con <code>srcset</code> y <code>sizes</code>.</li>
+                                <li>Logo reducido de 16.6 KB (PNG) a 2.2 KB (WebP).</li>
+                                <li>Preload del hero LCP con <code>fetchpriority="high"</code> y fuentes no bloqueantes.</li>
+                                <li>Dimensiones reales en imágenes para evitar saltos (CLS).</li>
+                            </ul>
+                        </div>
+
+                        <div class="lh-card">
+                            <div class="lh-badge">A11y</div>
+                            <h3>Accesibilidad</h3>
+                            <ul>
+                                <li>Controles <code>&lt;button&gt;</code> y <code>&lt;dialog closedby="any"&gt;</code> nativos.</li>
+                                <li>Contraste validado WCAG AA/AAA en textos, rubí y footer.</li>
+                                <li>Skip links, foco visible y áreas táctiles amplias en móvil.</li>
+                                <li>Respeto total a <code>prefers-reduced-motion</code>.</li>
+                            </ul>
+                        </div>
+
+                        <div class="lh-card">
+                            <div class="lh-badge">SEO</div>
+                            <h3>Posicionamiento</h3>
+                            <ul>
+                                <li>Datos estructurados JSON-LD (<code>ClothingStore</code> y <code>CollectionPage</code>).</li>
+                                <li>Archivos <code>robots.txt</code> y <code>sitemap.xml</code> listos.</li>
+                                <li>Metadatos únicos, Open Graph y Twitter Cards.</li>
+                                <li>Jerarquía semántica de encabezados y textos <code>alt</code>.</li>
+                            </ul>
+                        </div>
+
+                        <div class="lh-card">
+                            <div class="lh-badge">BP</div>
+                            <h3>Buenas Prácticas</h3>
+                            <ul>
+                                <li>Cero librerías pesadas y carga rápida incluso sin servidor.</li>
+                                <li>Fallbacks cross-browser para Safari y Firefox en <code>&lt;dialog&gt;</code>.</li>
+                                <li>Enlaces externos protegidos con <code>rel="noopener noreferrer"</code>.</li>
+                                <li>Scripts diferidos con <code>defer</code>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SLIDE 9: CIERRE, SIGUIENTES PASOS Y DEMO ═══ -->
+            <section class="slide slide-surface" data-title="Resumen y demo en vivo">
+                <div class="slide-inner closing-grid">
+                    <div>
+                        <p class="eyebrow">08 · Entrega y Demostración en Vivo</p>
+                        <h2 class="slide-title">Briefing cumplido al 100% en diseño y funcionalidad</h2>
+                        <p class="slide-lead">La tienda web de <strong>rubi.shops</strong> está lista para recibir clientas, destacar sus ofertas actuales y canalizar pedidos organizados hacia WhatsApp.</p>
+
+                        <div class="next-steps-box">
+                            <div class="next-steps-title">Próximos pasos con material del cliente</div>
+                            <ul class="next-steps-list">
+                                <li>1. Incorporar fotografías propias de enterizos, blusas y renovar fotos de catálogo.</li>
+                                <li>2. Validar el texto exacto de Políticas de cambios y el manual de marca en PDF.</li>
+                                <li>3. Conectar dominio definitivo para activar enlaces absolutos en SEO y redes.</li>
+                            </ul>
+                        </div>
+
+                        <div class="closing-actions">
+                            <a href="index.html" target="_blank" rel="noopener noreferrer" class="btn btn-ruby">Abrir página en vivo &rarr;</a>
+                            <a href="catalogo.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Probar catálogo y bolsa</a>
+                        </div>
+                    </div>
+
+                    <div class="closing-mosaic" aria-hidden="true">
+                        <picture>
+                            <source srcset="fotos/06_azul_brillos_480.webp" type="image/webp">
+                            <img src="fotos/06_azul_brillos.jpg" alt="" width="480" height="626" loading="lazy">
+                        </picture>
+                        <picture>
+                            <source srcset="fotos/13_verde_terciopelo_480.webp" type="image/webp">
+                            <img src="fotos/13_verde_terciopelo.jpg" alt="" width="480" height="636" loading="lazy">
+                        </picture>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Barra inferior -->
+        <footer class="deck-controls" aria-label="Controles de presentación">
+            <div class="deck-progress" id="deck-progress" style="width: 11.11%;"></div>
+
+            <div class="controls-group">
+                <button type="button" class="ctrl-btn" id="btn-prev" aria-label="Diapositiva anterior">
+                    &larr; <span class="ctrl-text">Anterior</span>
+                </button>
+                <span class="slide-counter" id="slide-counter">01 / 09</span>
+                <button type="button" class="ctrl-btn" id="btn-next" aria-label="Siguiente diapositiva">
+                    <span class="ctrl-text">Siguiente</span> &rarr;
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal Índice -->
+    <dialog id="overview-dialog" class="overview-dialog" closedby="any" aria-labelledby="overview-title">
+        <div class="overview-head">
+            <h2 id="overview-title">Diapositivas de la presentación</h2>
+            <button type="button" class="ctrl-btn" id="btn-close-overview" aria-label="Cerrar índice">&times;</button>
+        </div>
+        <div class="overview-list" id="overview-list"></div>
+    </dialog>
+
+    <script>
+        (function () {
+            const slides = Array.from(document.querySelectorAll('.slide'));
+            const total = slides.length;
+            let current = 0;
+
+            const counterEl = document.getElementById('slide-counter');
+            const sectionEl = document.getElementById('current-section');
+            const progressEl = document.getElementById('deck-progress');
+            const announcerEl = document.getElementById('slide-announcer');
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const overviewDialog = document.getElementById('overview-dialog');
+            const overviewList = document.getElementById('overview-list');
+            const btnCloseOverview = document.getElementById('btn-close-overview');
+            const stage = document.getElementById('deck-stage');
+
+            function pad(n) {
+                return String(n).padStart(2, '0');
+            }
+
+            function buildOverview() {
+                overviewList.innerHTML = '';
+                slides.forEach((slide, idx) => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'overview-item' + (idx === current ? ' current' : '');
+                    btn.innerHTML = `<span class="overview-num">${pad(idx + 1)} / ${pad(total)}</span><span class="overview-name">${slide.dataset.title || 'Diapositiva ' + (idx + 1)}</span>`;
+                    btn.addEventListener('click', () => {
+                        goTo(idx);
+                        if (overviewDialog.open) overviewDialog.close();
+                    });
+                    overviewList.appendChild(btn);
+                });
+            }
+
+            function goTo(index, updateHash = true) {
+                const target = Math.max(0, Math.min(total - 1, index));
+                current = target;
+
+                slides.forEach((slide, idx) => {
+                    slide.classList.toggle('active', idx === current);
+                    slide.classList.toggle('prev', idx < current);
+                    slide.setAttribute('aria-hidden', idx === current ? 'false' : 'true');
+                });
+
+                const title = slides[current].dataset.title || `Diapositiva ${current + 1}`;
+                counterEl.textContent = `${pad(current + 1)} / ${pad(total)}`;
+                sectionEl.textContent = `${pad(current + 1)} · ${title}`;
+                progressEl.style.width = `${((current + 1) / total) * 100}%`;
+                announcerEl.textContent = `Diapositiva ${current + 1} de ${total}: ${title}`;
+
+                btnPrev.disabled = current === 0;
+                btnNext.disabled = current === total - 1;
+
+                if (updateHash) {
+                    try {
+                        window.history.replaceState(null, '', `#${current + 1}`);
+                    } catch (e) {}
+                }
+            }
+
+            function toggleFullscreen() {
+                if (!document.fullscreenElement) {
+                    if (document.documentElement.requestFullscreen) {
+                        document.documentElement.requestFullscreen().catch(() => {});
+                    }
+                } else if (document.exitFullscreen) {
+                    document.exitFullscreen().catch(() => {});
+                }
+            }
+
+            function openOverview() {
+                buildOverview();
+                if (typeof overviewDialog.showModal === 'function') {
+                    overviewDialog.showModal();
+                } else {
+                    overviewDialog.setAttribute('open', '');
+                }
+            }
+
+            btnPrev.addEventListener('click', () => goTo(current - 1));
+            btnNext.addEventListener('click', () => goTo(current + 1));
+
+            btnCloseOverview.addEventListener('click', () => {
+                if (typeof overviewDialog.close === 'function') overviewDialog.close();
+                else overviewDialog.removeAttribute('open');
+            });
+
+            if (!('closedBy' in HTMLDialogElement.prototype)) {
+                overviewDialog.addEventListener('click', (e) => {
+                    if (e.target !== overviewDialog) return;
+                    const rect = overviewDialog.getBoundingClientRect();
+                    const inside = rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+                                   rect.left <= e.clientX && e.clientX <= rect.left + rect.width;
+                    if (!inside && overviewDialog.open) overviewDialog.close();
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (overviewDialog.open) return;
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+                if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                    if (e.key === ' ' && e.target.tagName === 'BUTTON') return;
+                    e.preventDefault();
+                    goTo(current + 1);
+                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                    e.preventDefault();
+                    goTo(current - 1);
+                } else if (e.key === 'Home') {
+                    e.preventDefault();
+                    goTo(0);
+                } else if (e.key === 'End') {
+                    e.preventDefault();
+                    goTo(total - 1);
+                } else if (e.key.toLowerCase() === 'f') {
+                    toggleFullscreen();
+                } else if (e.key.toLowerCase() === 'g') {
+                    openOverview();
+                }
+            });
+
+            let touchStartX = 0;
+            stage.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].clientX;
+            }, { passive: true });
+
+            stage.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    goTo(diff > 0 ? current + 1 : current - 1);
+                }
+            }, { passive: true });
+
+            const hashNum = parseInt(window.location.hash.replace('#', ''), 10);
+            if (!Number.isNaN(hashNum) && hashNum >= 1 && hashNum <= total) {
+                goTo(hashNum - 1, false);
+            } else {
+                goTo(0, false);
+            }
+        })();
+    </script>
+</body>
+</html>

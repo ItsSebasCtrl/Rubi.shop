@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo de rubi.shops — Descubra vestidos y ropa de dama por ocasión y talla desde juvenil XS hasta plus XXXL.">
+    <meta name="theme-color" content="#FFFFFF">
+    <title>Catálogo — rubi.shops</title>
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Open Graph & Meta Redes -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Catálogo de Prendas — rubi.shops">
+    <meta property="og:description" content="Filtre por ocasión y talla desde juvenil XS hasta talla plus XXXL. Ofertas actuales y envíos a toda Venezuela.">
+    <meta property="og:image" content="fotos/01_rosa_larga.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Catálogo de Prendas — rubi.shops">
+    <meta name="twitter:description" content="Buscador y filtros en tiempo real por ocasión y talla. Envíos a toda Venezuela.">
+    <meta name="twitter:image" content="fotos/01_rosa_larga.jpg">
+
+    <!-- Preload catálogo JSON -->
+    <link rel="preload" href="products.json" as="fetch" crossorigin>
+
+    <!-- Google Fonts no bloqueante -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Jost:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Jost:wght@400;500;600&display=swap"></noscript>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Catálogo de Prendas — rubi.shops",
+      "description": "Catálogo de vestidos y ropa de dama para fiesta, bodas, graduaciones y ocasiones especiales desde talla juvenil XS hasta talla plus XXXL."
+    }
+    </script>
+</head>
+<body>
+    <a href="#catalog-search-input" class="skip-link visually-hidden">Saltar al buscador y catálogo</a>
+
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="nav-container" aria-label="Principal">
+            <a href="index.html" class="logo">
+                <picture>
+                    <source srcset="logo.webp" type="image/webp">
+                    <img src="logo.png" alt="rubi.shops" class="logo-img" width="32" height="32">
+                </picture>
+                <span class="logo-text">RUBÍ<span class="logo-dot">.</span>SHOPS</span>
+            </a>
+
+            <ul class="nav-links" id="primary-nav-links">
+                <li><a href="catalogo.html" data-nav-status="all" class="active" aria-current="page">Catálogo</a></li>
+                <li><a href="catalogo.html?estado=new" data-nav-status="new">Novedades</a></li>
+                <li><a href="catalogo.html?estado=sale" data-nav-status="sale">Ofertas</a></li>
+                <li><a href="index.html#ocasiones">Ocasiones</a></li>
+                <li><a href="index.html#tienda">Boutique</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <a href="https://www.instagram.com/rubi.shops/" class="nav-icon-link" aria-label="Instagram de rubi.shops" title="Instagram" target="_blank" rel="noopener noreferrer">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@rubi.shops" class="nav-icon-link" aria-label="TikTok de rubi.shops" title="TikTok" target="_blank" rel="noopener noreferrer">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                </a>
+                <a href="https://wa.me/584246295209?text=Hola%20rubi.shops,%20deseo%20recibir%20asesoría%20sobre%20su%20colección" class="nav-icon-link nav-icon-wa" aria-label="WhatsApp de rubi.shops" title="Escribir por WhatsApp" target="_blank" rel="noopener noreferrer">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+                <button type="button" id="btn-open-bag" class="nav-icon-link nav-bag-btn" aria-label="Abrir bolsa de pedido" title="Mi pedido">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span id="bag-count" class="bag-count-badge" hidden>0</span>
+                </button>
+                <button type="button" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="primary-nav-links">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </nav>
+        <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+    </header>
+
+    <main class="catalog-page-main">
+
+        <!-- Encabezado compacto de catálogo -->
+        <section class="catalog-header-section">
+            <div class="container catalog-header-inner">
+                <div>
+                    <nav class="catalog-breadcrumbs" aria-label="Migas de pan">
+                        <a href="index.html">Inicio</a>
+                        <span class="breadcrumb-separator" aria-hidden="true">/</span>
+                        <span class="breadcrumb-current">Catálogo</span>
+                    </nav>
+                    <h1 id="catalog-page-title" class="catalog-title">Nuestra Colección</h1>
+                </div>
+                <span id="results-count" class="results-count" aria-live="polite" role="status">14 prendas</span>
+            </div>
+        </section>
+
+        <!-- Barra de filtros plana -->
+        <section class="catalog-controls-section" aria-label="Filtros y búsqueda">
+            <div class="container">
+                <div class="catalog-toolbar">
+
+                    <div class="catalog-toolbar-top">
+                        <div class="catalog-status-filters" role="group" aria-label="Estado de prendas">
+                            <button type="button" class="status-btn active" data-status="all" aria-pressed="true">Todas</button>
+                            <button type="button" class="status-btn" data-status="sale" aria-pressed="false">En oferta</button>
+                            <button type="button" class="status-btn" data-status="new" aria-pressed="false">Novedades</button>
+                        </div>
+
+                        <div class="catalog-search-sort">
+                            <div class="catalog-search-wrapper">
+                                <label for="catalog-search-input" class="visually-hidden">Buscar prendas por color, corte u ocasión</label>
+                                <span class="search-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                </span>
+                                <input
+                                    type="search"
+                                    id="catalog-search-input"
+                                    class="catalog-search-input"
+                                    placeholder="Buscar por color, corte u ocasión..."
+                                    autocomplete="off"
+                                >
+                                <button type="button" id="search-clear-btn" class="search-clear-btn" aria-label="Limpiar búsqueda" hidden>&times;</button>
+                            </div>
+
+                            <div class="catalog-sort-wrapper">
+                                <label for="catalog-sort-select" class="visually-hidden">Ordenar resultados</label>
+                                <select id="catalog-sort-select" class="sort-select">
+                                    <option value="featured">Ordenar: Destacados</option>
+                                    <option value="price-asc">Precio: menor a mayor</option>
+                                    <option value="price-desc">Precio: mayor a menor</option>
+                                    <option value="name-asc">Nombre: A – Z</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="catalog-toolbar-filters">
+                        <div class="filter-group">
+                            <span class="filter-group-label" id="label-occasions">Categoría</span>
+                            <div class="filter-chips-wrapper" id="occasion-chips" role="group" aria-labelledby="label-occasions">
+                                <button type="button" class="catalog-chip active" data-filter="all" aria-pressed="true">Todas</button>
+                                <button type="button" class="catalog-chip" data-filter="fiesta" aria-pressed="false">Fiesta y noche</button>
+                                <button type="button" class="catalog-chip" data-filter="wedding" aria-pressed="false">Bodas</button>
+                                <button type="button" class="catalog-chip" data-filter="graduation" aria-pressed="false">Graduación</button>
+                                <button type="button" class="catalog-chip" data-filter="birthday" aria-pressed="false">Cumpleaños</button>
+                                <button type="button" class="catalog-chip" data-filter="ocasion-especial" aria-pressed="false">Gala</button>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <span class="filter-group-label" id="label-sizes">Talla</span>
+                            <div class="size-chips-wrapper" id="size-chips" role="group" aria-labelledby="label-sizes">
+                                <button type="button" class="size-chip active" data-size="all" aria-pressed="true">Todas</button>
+                                <button type="button" class="size-chip" data-size="XS" aria-pressed="false">XS</button>
+                                <button type="button" class="size-chip" data-size="S" aria-pressed="false">S</button>
+                                <button type="button" class="size-chip" data-size="M" aria-pressed="false">M</button>
+                                <button type="button" class="size-chip" data-size="L" aria-pressed="false">L</button>
+                                <button type="button" class="size-chip" data-size="XL" aria-pressed="false">XL</button>
+                                <button type="button" class="size-chip" data-size="XXL" aria-pressed="false">XXL</button>
+                                <button type="button" class="size-chip" data-size="XXXL" aria-pressed="false">XXXL</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="catalog-active-row" id="catalog-active-row" hidden>
+                        <div id="active-tags-list" class="active-tags-list"></div>
+                        <button type="button" id="clear-all-filters-btn" class="clear-filters-btn" hidden>Limpiar filtros</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Grilla de productos -->
+        <section class="catalog-results-section">
+            <div class="container">
+                <div id="catalog-products-container" class="products-grid">
+                    <!-- Tarjetas generadas por catalogo.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Franja de asesoría de tallas -->
+        <section class="catalog-help-strip">
+            <div class="container catalog-help-inner">
+                <div>
+                    <h2>¿Desea asesoría con su talla o medidas?</h2>
+                    <p>Escríbanos y con gusto le facilitaremos las medidas exactas de busto, cintura y cadera de cualquier modelo.</p>
+                </div>
+                <a href="https://wa.me/584246295209?text=Hola%20rubi.shops,%20deseo%20asesoría%20con%20las%20medidas%20de%20un%20vestido" target="_blank" rel="noopener noreferrer" class="btn btn-ruby">
+                    Consultar a una asesora
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo logo-footer">
+                    <picture>
+                        <source srcset="logo.webp" type="image/webp">
+                        <img src="logo.png" alt="rubi.shops" class="logo-img" width="32" height="32" loading="lazy" decoding="async">
+                    </picture>
+                    <span class="logo-text">RUBÍ<span class="logo-dot">.</span>SHOPS</span>
+                </a>
+                <p class="footer-desc">Radiante como tú. Boutique de vestidos, enterizos, blusas y ropa de dama desde talla juvenil hasta talla plus.</p>
+                <p class="footer-meta">C.C. Gran Bazar, Nivel Feria, Local 995, Maracaibo · Lun–Sáb 9:30 a. m. – 6:00 p. m.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Tienda</h4>
+                <ul>
+                    <li><a href="catalogo.html">Catálogo completo</a></li>
+                    <li><a href="catalogo.html?estado=sale">Ofertas actuales</a></li>
+                    <li><a href="catalogo.html?estado=new">Nueva colección</a></li>
+                    <li><a href="catalogo.html?categoria=wedding">Bodas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Información</h4>
+                <ul>
+                    <li><button type="button" class="footer-dialog-trigger" id="btn-open-policies">Políticas de cambios y devoluciones</button></li>
+                    <li><button type="button" class="footer-dialog-trigger" id="btn-open-shipping">Envíos nacionales</button></li>
+                    <li><a href="index.html#tienda">Ubicación y servicios</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Redes</h4>
+                <ul>
+                    <li><a href="https://www.instagram.com/rubi.shops/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                    <li><a href="https://www.tiktok.com/@rubi.shops" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+                    <li><a href="https://wa.me/584246295209" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 rubi.shops. Maracaibo, Venezuela.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Detalle de Prenda (<dialog>) -->
+    <dialog id="product-modal" class="product-modal" closedby="any" aria-labelledby="modal-product-title">
+        <div class="modal-container">
+            <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Cerrar detalles del vestido">&times;</button>
+            <div class="modal-image-col">
+                <picture id="modal-picture">
+                    <source id="modal-product-webp" srcset="" sizes="(max-width: 768px) 92vw, 430px" type="image/webp">
+                    <img id="modal-product-img" src="" alt="" width="1080" height="1420" fetchpriority="low" decoding="async">
+                </picture>
+            </div>
+            <div class="modal-info-col">
+                <div id="modal-badges-row" class="modal-badges-row"></div>
+                <h2 id="modal-product-title" class="modal-title"></h2>
+                <div id="modal-price-box" class="modal-price-box"></div>
+                <p id="modal-product-desc" class="modal-description"></p>
+
+                <div class="modal-size-selector">
+                    <span class="modal-size-label" id="modal-size-heading">Seleccione su talla</span>
+                    <div id="modal-size-pills" class="modal-size-pills" role="radiogroup" aria-labelledby="modal-size-heading"></div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="modal-add-bag-btn" class="btn btn-ruby">
+                        Agregar a mi pedido
+                    </button>
+                    <a id="modal-whatsapp-cta" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        <span id="modal-whatsapp-btn-text">Consultar por WhatsApp</span>
+                    </a>
+                    <button type="button" id="modal-share-btn" class="modal-share-btn">
+                        Compartir enlace
+                    </button>
+                    <span id="modal-toast" class="modal-toast" hidden aria-live="polite">Enlace copiado</span>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Dialog: Bolsa de Pedido -->
+    <dialog id="bag-dialog" class="info-dialog bag-dialog" closedby="any" aria-labelledby="bag-title-cat">
+        <div class="info-dialog-container">
+            <div class="info-dialog-header">
+                <h2 id="bag-title-cat" class="info-dialog-title">Mi pedido</h2>
+                <button type="button" class="info-dialog-close" id="btn-close-bag" aria-label="Cerrar bolsa de pedido">&times;</button>
+            </div>
+            <div class="info-dialog-body" id="bag-body">
+                <!-- Renderizado dinámicamente -->
+            </div>
+            <div class="info-dialog-footer bag-footer" id="bag-footer" hidden>
+                <div class="bag-total-row">
+                    <span>Total estimado</span>
+                    <strong id="bag-total">$0</strong>
+                </div>
+                <div class="bag-footer-actions">
+                    <button type="button" id="btn-clear-bag" class="btn btn-outline">Vaciar</button>
+                    <a id="bag-whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">Enviar pedido por WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Dialog: Políticas de Cambios -->
+    <dialog id="policies-modal" class="info-dialog" closedby="any" aria-labelledby="policies-title-cat">
+        <div class="info-dialog-container">
+            <div class="info-dialog-header">
+                <h2 id="policies-title-cat" class="info-dialog-title">Políticas de cambios y devoluciones</h2>
+                <button type="button" class="info-dialog-close" aria-label="Cerrar ventana">&times;</button>
+            </div>
+            <div class="info-dialog-body">
+                <p>En <strong>rubi.shops</strong> deseamos que luzca radiante y se sienta completamente segura con su elección. Ponemos a su disposición nuestras condiciones claras de cambio:</p>
+                <ul>
+                    <li><strong>Plazo:</strong> Dispone de hasta <strong>48 horas</strong> continuas tras recibir su prenda (en tienda o por envío nacional) para notificar su solicitud de cambio.</li>
+                    <li><strong>Estado de la prenda:</strong> Debe encontrarse intacta: sin uso, sin manchas de maquillaje o desodorante, sin aromas de perfume, sin modificaciones de costura y con sus etiquetas originales.</li>
+                    <li><strong>Modalidad:</strong> Los cambios se realizan por otra talla o modelo disponible. Si existe saldo a favor, se emitirá una nota de crédito con validez de 30 días. No se realizan reembolsos en efectivo ni transferencias.</li>
+                    <li><strong>Prendas en oferta:</strong> Las piezas adquiridas con descuento o precio de liquidación son venta final y no aplican para cambio.</li>
+                </ul>
+            </div>
+            <div class="info-dialog-footer">
+                <a href="https://wa.me/584246295209?text=Hola%20rubi.shops,%20deseo%20consultar%20sobre%20el%20cambio%20de%20una%20prenda" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                    Consultar a una asesora por WhatsApp
+                </a>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Dialog: Envíos Nacionales -->
+    <dialog id="shipping-modal" class="info-dialog" closedby="any" aria-labelledby="shipping-title-cat">
+        <div class="info-dialog-container">
+            <div class="info-dialog-header">
+                <h2 id="shipping-title-cat" class="info-dialog-title">Envíos nacionales y retiro en tienda</h2>
+                <button type="button" class="info-dialog-close" aria-label="Cerrar ventana">&times;</button>
+            </div>
+            <div class="info-dialog-body">
+                <p>Hacemos llegar su prenda a cualquier ciudad de Venezuela con empaque protector para cuidar tejidos y pedrería:</p>
+                <ul>
+                    <li><strong>Retiro en boutique (Maracaibo):</strong> Sin costo adicional en C.C. Gran Bazar, Nivel Feria, Local 995, de lunes a sábado de 9:30 a. m. a 6:00 p. m.</li>
+                    <li><strong>Delivery local:</strong> Coordinamos envíos express a domicilio en Maracaibo y San Francisco.</li>
+                    <li><strong>Encomiendas nacionales:</strong> Despachos diarios por <strong>MRW, Zoom, Tealca y Domesa</strong> (Cobro en Destino o flete prepagado).</li>
+                    <li><strong>Tiempos:</strong> Se procesan el mismo día o al día hábil siguiente tras confirmar el pago. Tránsito estimado de 24 a 72 horas hábiles con número de guía.</li>
+                </ul>
+            </div>
+            <div class="info-dialog-footer">
+                <a href="https://wa.me/584246295209?text=Hola%20rubi.shops,%20deseo%20cotizar%20un%20envío%20a%20mi%20ciudad" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                    Cotizar envío por WhatsApp
+                </a>
+            </div>
+        </div>
+    </dialog>
+
+    <button type="button" id="back-to-top" class="back-to-top" aria-label="Volver arriba">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <a href="https://wa.me/584246295209?text=Hola%20rubi.shops,%20deseo%20conocer%20su%20colección" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script src="catalogo.js" defer></script>
+</body>
+</html>
