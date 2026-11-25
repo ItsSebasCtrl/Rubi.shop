@@ -56,7 +56,6 @@ const modalSizePills = document.getElementById('modal-size-pills');
 const modalAddBagBtn = document.getElementById('modal-add-bag-btn');
 const modalWhatsappCta = document.getElementById('modal-whatsapp-cta');
 const modalWhatsappBtnText = document.getElementById('modal-whatsapp-btn-text');
-const modalShareBtn = document.getElementById('modal-share-btn');
 const modalToast = document.getElementById('modal-toast');
 
 let activeModalProduct = null;
@@ -971,9 +970,7 @@ function updateModalWhatsappCta() {
     );
     modalWhatsappCta.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
     if (modalWhatsappBtnText) {
-        modalWhatsappBtnText.textContent = activeModalSize
-            ? `Consultar talla ${activeModalSize} por WhatsApp`
-            : 'Consultar por WhatsApp';
+        modalWhatsappBtnText.textContent = 'Consultar por WhatsApp';
     }
 }
 
@@ -983,30 +980,6 @@ async function closeProductModal(updateHistory = true) {
     if (!productModal) return;
     suppressHistoryCleanOnClose = !updateHistory;
     await closeTopLayer(productModal);
-}
-
-async function copyTextToClipboard(text) {
-    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
-        try {
-            await navigator.clipboard.writeText(text);
-            return true;
-        } catch (e) {}
-    }
-    try {
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        textarea.style.left = '-9999px';
-        document.body.appendChild(textarea);
-        textarea.focus();
-        textarea.select();
-        const success = document.execCommand('copy');
-        document.body.removeChild(textarea);
-        return success;
-    } catch (e) {
-        return false;
-    }
 }
 
 function showModalFeedback(message) {
@@ -1056,34 +1029,6 @@ function setupModalEvents() {
             const isDialogContent = rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
                                     rect.left <= event.clientX && event.clientX <= rect.left + rect.width;
             if (!isDialogContent) closeProductModal(true);
-        });
-    }
-
-    if (modalShareBtn) {
-        modalShareBtn.addEventListener('click', async () => {
-            if (!activeModalProduct) return;
-            const baseUrl = (window.location.origin && window.location.origin !== 'null')
-                ? `${window.location.origin}${window.location.pathname}`
-                : window.location.href.split('?')[0];
-            const productUrl = `${baseUrl}?id=${activeModalProduct.id}`;
-
-            const shareData = {
-                title: `${activeModalProduct.name} — rubi.shops`,
-                text: `Descubra este vestido en rubi.shops: ${activeModalProduct.name}`,
-                url: productUrl
-            };
-
-            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-                try {
-                    await navigator.share(shareData);
-                    return;
-                } catch (err) {
-                    if (err.name === 'AbortError') return;
-                }
-            }
-
-            const copied = await copyTextToClipboard(productUrl);
-            if (copied) showModalFeedback('Enlace copiado al portapapeles');
         });
     }
 }

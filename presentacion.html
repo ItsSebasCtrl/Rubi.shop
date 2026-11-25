@@ -32,7 +32,7 @@
             --color-border-dark: #CCCCCC;
             --color-ruby: #C8102E;
             --color-ruby-dark: #9E0B23;
-            --color-whatsapp: #127A40;
+            --color-whatsapp: #25D366;
 
             --font-display: 'Jost', system-ui, -apple-system, sans-serif;
             --font-body: 'Inter', system-ui, -apple-system, sans-serif;
@@ -735,65 +735,159 @@
         /* ── Slide 7: Políticas y Móvil ── */
         .mobile-pair {
             display: grid;
-            grid-template-columns: 270px 1fr;
-            gap: 36px;
+            grid-template-columns: 276px 1fr;
+            gap: 40px;
             align-items: center;
         }
 
-        .phone-frame {
-            border: 2px solid var(--color-ink);
-            border-radius: 24px;
-            padding: 9px;
-            background-color: #FFFFFF;
-            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+        .phone-showcase {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
+
+        .phone-device {
+            position: relative;
+            width: 252px;
+            height: 506px;
+            padding: 9px;
+            border-radius: 38px;
+            background: linear-gradient(145deg, #2D2D30 0%, #141416 55%, #232326 100%);
+            box-shadow:
+                0 22px 44px rgba(0, 0, 0, 0.16),
+                0 6px 16px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+        }
+
+        .phone-btn-left-1,
+        .phone-btn-left-2,
+        .phone-btn-left-3,
+        .phone-btn-right {
+            position: absolute;
+            width: 3px;
+            border-radius: 2px;
+            background-color: #262629;
+        }
+
+        .phone-btn-left-1 { left: -3px; top: 82px; height: 22px; }
+        .phone-btn-left-2 { left: -3px; top: 118px; height: 38px; }
+        .phone-btn-left-3 { left: -3px; top: 164px; height: 38px; }
+        .phone-btn-right  { right: -3px; top: 132px; height: 54px; }
 
         .phone-screen {
-            border: 1px solid var(--color-border);
-            border-radius: 16px;
+            width: 234px;
+            height: 488px;
+            border-radius: 30px;
             overflow: hidden;
             background-color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
-        .phone-header {
+        .phone-statusbar {
+            height: 26px;
+            padding: 0 16px;
+            background-color: #FFFFFF;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 9px 11px;
-            border-bottom: 1px solid var(--color-border);
-            font-family: var(--font-display);
-            font-size: 0.72rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 3;
+        }
+
+        .phone-time {
+            font-family: var(--font-body);
+            font-size: 0.64rem;
             font-weight: 600;
-            letter-spacing: 0.08em;
-        }
-
-        .phone-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            padding: 10px;
-        }
-
-        .phone-card img {
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            object-fit: cover;
-            object-position: center 12%;
-            border-radius: 4px;
-        }
-
-        .phone-card-title {
-            font-size: 0.66rem;
             color: var(--color-ink);
-            margin-top: 4px;
-            line-height: 1.25;
+            letter-spacing: -0.01em;
         }
 
-        .phone-card-price {
-            font-size: 0.68rem;
-            font-weight: 600;
-            color: var(--color-ruby);
-            margin-top: 2px;
+        .phone-island {
+            position: absolute;
+            left: 50%;
+            top: 6px;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 15px;
+            border-radius: 999px;
+            background-color: #111111;
+        }
+
+        .phone-status-icons {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--color-ink);
+        }
+
+        .phone-viewport {
+            width: 234px;
+            height: 448px;
+            overflow: hidden;
+            position: relative;
+            background-color: #FFFFFF;
+            flex-shrink: 0;
+        }
+
+        .phone-iframe {
+            width: 390px;
+            height: 747px;
+            border: 0;
+            display: block;
+            transform: scale(0.6);
+            transform-origin: top left;
+            background-color: #FFFFFF;
+        }
+
+        .phone-homebar {
+            height: 14px;
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border-top: 1px solid #F0F0F0;
+        }
+
+        .phone-home-indicator {
+            width: 82px;
+            height: 4px;
+            border-radius: 999px;
+            background-color: #1A1A1A;
+        }
+
+        .phone-switcher {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px;
+            border-radius: 999px;
+            border: 1px solid var(--color-border-dark);
+            background-color: #FFFFFF;
+        }
+
+        .phone-switch-btn {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border: 0;
+            border-radius: 999px;
+            background: transparent;
+            color: var(--color-muted);
+            cursor: pointer;
+            transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease);
+        }
+
+        .phone-switch-btn.active {
+            background-color: var(--color-ink);
+            color: #FFFFFF;
         }
 
         /* ── Slide 8: Lighthouse ── */
@@ -817,8 +911,8 @@
             width: 44px;
             height: 44px;
             border-radius: 999px;
-            border: 2px solid var(--color-whatsapp);
-            color: var(--color-whatsapp);
+            border: 2px solid #127A40;
+            color: #127A40;
             font-family: var(--font-display);
             font-size: 0.86rem;
             font-weight: 600;
@@ -1104,8 +1198,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .phone-frame {
-                max-width: 260px;
+            .phone-showcase {
                 margin: 0 auto;
             }
         }
@@ -1195,8 +1288,8 @@
             <span id="current-section" class="deck-section-label">01 · Propuesta Web</span>
 
             <div class="deck-top-actions">
-                <a href="index.html" target="_blank" rel="noopener noreferrer" class="deck-top-link">Ver sitio</a>
-                <a href="catalogo.html" target="_blank" rel="noopener noreferrer" class="deck-top-link">Catálogo</a>
+                <a href="https://itssebasctrl.github.io/Rubi.shop/" target="_blank" rel="noopener noreferrer" class="deck-top-link">Ver sitio</a>
+                <a href="https://itssebasctrl.github.io/Rubi.shop/catalogo.html" target="_blank" rel="noopener noreferrer" class="deck-top-link">Catálogo</a>
             </div>
         </header>
 
@@ -1386,7 +1479,7 @@
                             </ul>
                             <ul class="solution-list" style="margin-top: 6px;">
                                 <li>El Hero abre con una fotografía vertical grande de la nueva colección y acceso directo a <strong>Explorar catálogo</strong> y <strong>Ver ofertas actuales</strong>.</li>
-                                <li>Inmediatamente debajo de la barra de tallas ubicamos la sección dedicada <strong>Ofertas actuales</strong> con etiquetas de descuento (<code>-17%</code> a <code>-19%</code>) y precio anterior tachado.</li>
+                                <li>Inmediatamente debajo del Hero ubicamos la sección dedicada <strong>Ofertas actuales</strong> con etiquetas de descuento (<code>-17%</code> a <code>-19%</code>) y precio anterior tachado.</li>
                             </ul>
                         </div>
 
@@ -1543,7 +1636,7 @@
                                         <span class="size-box">XL</span>
                                     </div>
                                     <div class="mock-btn-ruby">Agregar a mi pedido</div>
-                                    <div class="mock-btn-wa">Consultar talla M por WhatsApp</div>
+                                    <div class="mock-btn-wa">Consultar por WhatsApp</div>
                                 </div>
                             </div>
                         </div>
@@ -1560,30 +1653,43 @@
                     </div>
 
                     <div class="mobile-pair">
-                        <div class="phone-frame" aria-label="Vista previa móvil">
-                            <div class="phone-screen">
-                                <div class="phone-header">
-                                    <span>RUBÍ<span style="color: var(--color-ruby);">.</span>SHOPS</span>
-                                    <span>☰</span>
-                                </div>
-                                <div class="phone-grid">
-                                    <div class="phone-card">
-                                        <picture>
-                                            <source srcset="fotos/01_rosa_larga_480.webp" type="image/webp">
-                                            <img src="fotos/01_rosa_larga.jpg" alt="Vestido Sirena Magenta" width="480" height="626" loading="lazy">
-                                        </picture>
-                                        <div class="phone-card-title">Sirena Magenta Corset</div>
-                                        <div class="phone-card-price">$180</div>
+                        <div class="phone-showcase">
+                            <div class="phone-device" aria-label="Vista previa real en teléfono móvil">
+                                <span class="phone-btn-left-1" aria-hidden="true"></span>
+                                <span class="phone-btn-left-2" aria-hidden="true"></span>
+                                <span class="phone-btn-left-3" aria-hidden="true"></span>
+                                <span class="phone-btn-right" aria-hidden="true"></span>
+
+                                <div class="phone-screen">
+                                    <div class="phone-statusbar" aria-hidden="true">
+                                        <span class="phone-time">9:41</span>
+                                        <span class="phone-island"></span>
+                                        <span class="phone-status-icons">
+                                            <svg width="11" height="9" viewBox="0 0 14 10" fill="currentColor"><rect x="0" y="6" width="2.4" height="4" rx="0.6"/><rect x="3.6" y="4" width="2.4" height="6" rx="0.6"/><rect x="7.2" y="2" width="2.4" height="8" rx="0.6"/><rect x="10.8" y="0" width="2.4" height="10" rx="0.6"/></svg>
+                                            <svg width="11" height="9" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 4.2a9.5 9.5 0 0 1 13 0"/><path d="M4.2 7.2a5.5 5.5 0 0 1 7.6 0"/><circle cx="8" cy="10.2" r="1" fill="currentColor" stroke="none"/></svg>
+                                            <svg width="16" height="9" viewBox="0 0 22 11" fill="none"><rect x="0.7" y="0.7" width="18" height="9.6" rx="2.4" stroke="currentColor" stroke-width="1.2"/><rect x="2.4" y="2.4" width="14.6" height="6.2" rx="1.2" fill="currentColor"/><path d="M20.2 3.8v3.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                                        </span>
                                     </div>
-                                    <div class="phone-card">
-                                        <picture>
-                                            <source srcset="fotos/05_rosa_corto_480.webp" type="image/webp">
-                                            <img src="fotos/05_rosa_corto.jpg" alt="Vestido Coquette Rosa" width="480" height="639" loading="lazy">
-                                        </picture>
-                                        <div class="phone-card-title">Coquette Rosa · -19%</div>
-                                        <div class="phone-card-price">$110</div>
+
+                                    <div class="phone-viewport">
+                                        <iframe
+                                            id="phone-preview-frame"
+                                            class="phone-iframe"
+                                            src="index.html"
+                                            title="Vista móvil real de rubi.shops"
+                                            loading="lazy"
+                                        ></iframe>
+                                    </div>
+
+                                    <div class="phone-homebar" aria-hidden="true">
+                                        <span class="phone-home-indicator"></span>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="phone-switcher" role="group" aria-label="Cambiar pantalla del teléfono">
+                                <button type="button" class="phone-switch-btn active" data-phone-page="index">Inicio</button>
+                                <button type="button" class="phone-switch-btn" data-phone-page="catalogo">Catálogo</button>
                             </div>
                         </div>
 
@@ -1686,8 +1792,7 @@
                         </div>
 
                         <div class="closing-actions">
-                            <a href="index.html" target="_blank" rel="noopener noreferrer" class="btn btn-ruby">Abrir página en vivo &rarr;</a>
-                            <a href="catalogo.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Probar catálogo y bolsa</a>
+                            <a href="https://itssebasctrl.github.io/Rubi.shop/" target="_blank" rel="noopener noreferrer" class="btn btn-ruby">Abrir página en vivo &rarr;</a>
                         </div>
                     </div>
 
@@ -1864,6 +1969,18 @@
                     goTo(diff > 0 ? current + 1 : current - 1);
                 }
             }, { passive: true });
+
+            const phoneFrame = document.getElementById('phone-preview-frame');
+            const phoneSwitchBtns = Array.from(document.querySelectorAll('.phone-switch-btn'));
+
+            phoneSwitchBtns.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const page = btn.dataset.phonePage;
+                    phoneSwitchBtns.forEach((b) => b.classList.toggle('active', b === btn));
+                    if (!phoneFrame) return;
+                    phoneFrame.src = page === 'catalogo' ? 'catalogo.html' : 'index.html';
+                });
+            });
 
             const hashNum = parseInt(window.location.hash.replace('#', ''), 10);
             if (!Number.isNaN(hashNum) && hashNum >= 1 && hashNum <= total) {
